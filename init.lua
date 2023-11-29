@@ -273,6 +273,20 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- [[Русская раскладка клавиатуры]]
+-- :h russian-keymaps
+--
+-- Есть несколько вариантов использования, первый переключать раскладку в nvim <C-^> только в режиме вставки.
+-- Можно использовать когда нет возможности переключить раскладку в системе.
+vim.o.keymap = 'russian-jcukenmac'
+-- По умолчанию используется системная раскладка
+vim.o.iminsert = 0
+--
+-- Если раскладка переключена в системе, то используется таблица соответсвия.
+-- В этом случае перевод символов будет работать не только в режиме вставки, но и в номармальном режиме.
+-- Но привязки клавиш и комбинации вида <Ctrl-R> не будут работать. 
+vim.o.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
