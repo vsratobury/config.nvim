@@ -314,6 +314,25 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- [[ Настройка Terminal + Fish ]]
+--
+-- Создание комбинации клавиш для открытия буфера терминала
+vim.keymap.set('n','<leader>t', ':vsplit term://fish<cr>', { desc = 'Open Terminal with Fish shell' })
+-- Создание подменной комбинации клавиш для переключения в нормальный режим.
+vim.keymap.set('t','<Esc>', '<C-\\><C-n>', { desc = 'Open Terminal with Fish shell' })
+
+-- Настройка буфера с терминалом при его открытии.
+vim.api.nvim_create_augroup('Terminal', { clear = true })
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = 'Terminal',
+  pattern = { '*' },
+  callback = function()
+    vim.cmd 'setlocal nonumber norelativenumber'
+    vim.cmd 'setlocal nospell'
+    vim.cmd 'setlocal signcolumn=auto'
+  end,
+})
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
