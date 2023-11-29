@@ -116,19 +116,6 @@ require('lazy').setup({
           },
         },
         os = {
-          -- Darwin - Mac OS, the result of `vim.loop.os_uname().sysname`
-          Darwin = {
-            ---Function for getting current keyboard layout on your OS
-            ---Should return string with id of layout
-            ---@return string
-            get_current_layout_id = function()
-              local cmd = 'im-select'
-              if vim.fn.executable(cmd) then
-                local output = vim.split(vim.trim(vim.fn.system(cmd)), '\n')
-                return output[#output]
-              end
-            end,
-          },
         },
       })
     end,
@@ -694,9 +681,6 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
-
--- [[ Русская раскладка для нормального режима ]]
--- require('langmapper').automapping({ global = true, buffer = true })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
