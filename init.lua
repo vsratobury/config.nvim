@@ -112,7 +112,8 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = { layout = { align = 'center' }, } },
+
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -220,7 +221,7 @@ require('lazy').setup({
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
+  require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -312,9 +313,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- [[ Настройка Terminal + Fish ]]
 --
 -- Создание комбинации клавиш для открытия буфера терминала
-vim.keymap.set('n','<leader>t', ':vsplit term://fish<cr>', { desc = 'Open Terminal with Fish shell' })
+vim.keymap.set('n', '<leader>t', ':vsplit term://fish<cr>', { desc = 'Open Terminal with Fish shell' })
 -- Создание подменной комбинации клавиш для переключения в нормальный режим.
-vim.keymap.set('t','<Esc>', '<C-\\><C-n>', { desc = 'Open Terminal with Fish shell' })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Open Terminal with Fish shell' })
 
 -- Настройка буфера с терминалом при его открытии.
 vim.api.nvim_create_augroup('Terminal', { clear = true })
@@ -373,7 +374,7 @@ local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
     require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
+      search_dirs = { git_root },
     })
   end
 end
