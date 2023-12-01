@@ -164,14 +164,12 @@ require('lazy').setup({
 
   {
     -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       options = {
-        icons_enabled = false,
         theme = 'onedark',
-        component_separators = '|',
-        section_separators = '',
       },
     },
   },
@@ -217,6 +215,21 @@ require('lazy').setup({
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     build = ':TSUpdate',
+  },
+
+  -- Изменяет цвет не активных окон
+  -- https://github.com/levouh/tint.nvim.git
+  {
+    'levouh/tint.nvim',
+    config = function ()
+      require('tint').setup {
+        tint = -20,
+        saturation = 0.1,
+        tint_background_colors = true,
+        highlight_ignore_patterns = { "WinSeparator", "Status.*" },
+        transforms = require("tint").transforms.SATURATE_TINT,
+      }
+    end
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins"
@@ -277,6 +290,10 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- Разрешить переключатся если буфер изменен
 vim.o.hidden = true
+
+-- Только одна строка состояния, при значении меньше 3, строка соостояния будет
+-- показана в каждом окне
+vim.o.laststatus = 3
 
 -- Разрешить нахождение вариантов при не полном вводе строки
 vim.o.wildmode = 'list:longest'
