@@ -76,51 +76,6 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  -- [[ Русская раскладка для нормального режима ]]
-  -- Попытка настройки плагина.
-  {
-    'Wansmer/langmapper.nvim',
-    lazy = false,
-    priority = 1, -- High priority is needed if you will use `autoremap()`
-    config = function()
-      require('langmapper').setup({
-        ---@type boolean Add mapping for every CTRL+ binding or not.
-        map_all_ctrl = true,
-        ---@type string[] Modes to `map_all_ctrl`
-        ---Here and below each mode must be specified, even if some of them extend others.
-        ---E.g., 'v' includes 'x' and 's', but must be listed separate.
-        ctrl_map_modes = { 'n', 'i', 'v' },
-        -- ctrl_map_modes = { 'n', 'o', 'i', 'c', 't', 'v' },
-        ---@type boolean Wrap all keymap's functions (nvim_set_keymap etc)
-        hack_keymap = false,
-        ---@type string[] Usually you don't want insert mode commands to be translated when hacking.
-        ---This does not affect normal wrapper functions, such as `langmapper.map`
-        disable_hack_modes = { 'i', 'c', 't' },
-        ---@type table Modes whose mappings will be checked during automapping.
-        automapping_modes = { 'n', 'v' },
-        ---@type string Standart English layout (on Mac, It may be different in your case.)
-        default_layout = [[ABCDEFGHIJKLMNOPQRSTUVWXYZ<>:"{}~abcdefghijklmnopqrstuvwxyz,.;'[]`]],
-        ---@type string[] Names of layouts. If empty, will handle all configured layouts.
-        use_layouts = {},
-        ---@type table Fallback layouts
-        layouts = {
-          ---@type table Fallback layout item. Name of key is a name of language
-          ru = {
-            ---@type string Name of your second keyboard layout in system.
-            ---It should be the same as result string of `get_current_layout_id()`
-            id = 'com.apple.keylayout.RussianWin',
-            ---@type string Fallback layout to translate. Should be same length as default layout
-            layout = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯБЮЖЭХЪËфисвуапршолдьтщзйкыегмцчнябюжэхъё',
-            ---@type string if you need to specify default layout for this fallback layout
-            default_layout = nil,
-          },
-        },
-        os = {
-        },
-      })
-    end,
-  },
-
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
@@ -326,11 +281,6 @@ vim.o.termguicolors = true
 vim.o.keymap = 'russian-jcukenmac'
 -- По умолчанию используется системная раскладка
 vim.o.iminsert = 0
---
--- Если раскладка переключена в системе, то используется таблица соответсвия.
--- В этом случае перевод символов будет работать не только в режиме вставки, но и в номармальном режиме.
--- Но привязки клавиш и комбинации вида <Ctrl-R> не будут работать. 
-vim.o.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 
 -- [[ Basic Keymaps ]]
 
