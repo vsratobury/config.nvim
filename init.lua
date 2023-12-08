@@ -628,7 +628,8 @@ require('mason-lspconfig').setup()
 --  will attach to you can define the property 'filetypes' to the map in
 --  question.
 local servers = {
-  -- clangd = {},
+  clangd = {},
+  neocmake = {},
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
